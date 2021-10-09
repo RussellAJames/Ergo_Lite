@@ -5,11 +5,7 @@
 }
 
 
-.p{
-    
-    max-width: 80;
-    
-}
+
 
 
 
@@ -131,8 +127,8 @@
 }
 
 .container{
-    width: 85px;
-    height: 220px;
+    width: 50px;
+    height: 100px;
 }
 
 .container-history{
