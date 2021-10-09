@@ -1,6 +1,6 @@
 from django.db import models
 from django.core.validators import RegexValidator
-import base58
+
 
 from ergo.validators import validate_address
 # Create your models here.
