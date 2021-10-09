@@ -126,10 +126,7 @@
     max-width: 700px;
 }
 
-.container{
-    width: 50px;
-    height: 100px;
-}
+
 
 .container-history{
     grid-area: container-history;

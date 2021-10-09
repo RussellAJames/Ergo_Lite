@@ -44,17 +44,19 @@ Cryptocurrency Prices by Market Cap
         }
         .p{
         font-family: Open Sans;
-        max-width: 50vw;
+        max-width: 2vw;
         font-size:10px;
+        font-size:2vw;
         font-weight: 400;
     
         }
         
         .container{
         min-width:2vw;
-        max-width:100%;
-        width: 65px;
-        height: 150px;
+        max-width:20vw;
+        min-height: 5vh;
+        max-height: 20vh;
+        align-items: center;
         padding: 1vh 1vw;
         }
           
@@ -66,7 +68,16 @@ Cryptocurrency Prices by Market Cap
             max-width: 50vw;
             min-width:25vw;
         }
+        img{
+            width:15vw;
+            height:15vw;
+            max-width: 50px;
+            max-height: 50px;
+            border:2px ridge black;
+            background-color:white;
+            align-items: center;
 
+        }
 
 
 
@@ -84,7 +95,7 @@ Cryptocurrency Prices by Market Cap
     <th scope='col'>    
     <div class='container'>
         <ul>
-            <img src="{% static img.0 %}" alt="Smiley face" width="50" height="50" style="border:2px ridge black" background-color='white'> 
+            <img src="{% static img.0 %}" > 
                        
             <div class='p' style= 'color:#fffffff3'>1.{{name.0}}</div>
             <div class='p' style= 'color:#fffffff3'>{{sym.0}}</div>  
@@ -115,7 +126,7 @@ Cryptocurrency Prices by Market Cap
     <div class='container'>
         <ul>
 
-            <img src="{% static img.1 %}" alt={{sym.1}} width="50" height="50" style="border:2px ridge black">
+            <img src="{% static img.1 %}" alt={{sym.1}}>
  
             <div class='p' style= 'color:#fffffff3'>2.{{name.1}}</div>
             <div class='p' style= 'color:#fffffff3'>{{sym.1}}</div>
@@ -145,7 +156,7 @@ Cryptocurrency Prices by Market Cap
         <div class='container'>
 
             <ul>
-                <img src="{% static img.2 %}" alt="Smiley face" width="50" height="50" style="border:2px ridge black">
+                <img src="{% static img.2 %}" alt={{sym.2}}>
                 <div class='p' style= 'color:#fffffff3'>3.{{name.2}}</div>
                 <div class='p' style= 'color:#fffffff3'>{{sym.2}}</div>
                 <div class='p' style= 'color:#fffffff3'>${{price.2}}</div>
@@ -174,7 +185,7 @@ Cryptocurrency Prices by Market Cap
 
         <div class='container'>
             <ul>
-                <img src="{% static img.3 %}" alt="Smiley face" width="50" height="50" style="border:2px ridge black">
+                <img src="{% static img.3 %}" alt={{sym.3}} >
                 <div class='p' style= 'color:#fffffff3'>4.{{name.3}}</div>
                 <div class='p' style= 'color:#fffffff3'>{{sym.3}}</div>
                 <div class='p' style= 'color:#fffffff3'>${{price.3}}</div>
@@ -199,7 +210,7 @@ Cryptocurrency Prices by Market Cap
 
         <div class='container'>
             <ul>
-                <img src="{% static img.4 %}" alt="Smiley face" width="50" height="50" style="border:2px ridge black">
+                <img src="{% static img.4 %}" alt={{sym.4}} >
                 <div class='p' style= 'color:#fffffff3'>5.{{name.4}}</div>
                 <div class='p' style= 'color:#fffffff3'>{{sym.4}}</div>
                 <div class='p' style= 'color:#fffffff3'>${{price.4}}</div>
@@ -223,7 +234,7 @@ Cryptocurrency Prices by Market Cap
     <th scope='col'>    
         <div class='container'>
             <ul>
-                <img src="{% static img.5 %}" alt="Smiley face" width="50" height="50" style="border:2px ridge black">
+                <img src="{% static img.5 %}" alt={{sym.5}}>
                 <div class='p' style= 'color:#fffffff3'>6.{{name.5}}</div>
                 <div class='p' style= 'color:#fffffff3'>{{sym.5}}</div>
                 <div class='p' style= 'color:#fffffff3'>${{price.5}}</div>
@@ -246,7 +257,7 @@ Cryptocurrency Prices by Market Cap
     
         <div class='container'>
             <ul>
-                <img src="{% static img.6 %}" alt="Smiley face" width="50" height="50" style="border:2px ridge black">
+                <img src="{% static img.6 %}" alt={{sym.6}}>
                 <div class='p' style= 'color:#fffffff3'>7.{{name.6}}</div>
                 <div class='p' style= 'color:#fffffff3'>{{sym.6}}</div>
                 <div class='p' style= 'color:#fffffff3'>${{price.6}}</div>
@@ -268,7 +279,7 @@ Cryptocurrency Prices by Market Cap
     
             <div class='container'>
                 <ul>
-                    <img src="{% static img.7 %}" alt="Smiley face" width="50" height="50" style="border:2px ridge black">
+                    <img src="{% static img.7 %}" alt={{sym.7}}>
                     <div class='p' style= 'color:#fffffff3'>8.{{name.7}}</div>
                     <div class='p' style= 'color:#fffffff3'>{{sym.7}}</div>
                     <div class='p' style= 'color:#fffffff3'>${{price.7}}</div>
@@ -291,7 +302,7 @@ Cryptocurrency Prices by Market Cap
     
             <div class='container'>
                 <ul>
-                    <img src="{% static img.8 %}" alt="Smiley face" width="50" height="50" style="border:2px ridge black">
+                    <img src="{% static img.8 %}" alt={{sym.8}}>
                     <div class='p' style= 'color:#fffffff3'>9.{{name.8}}</div>
                     <div class='p' style= 'color:#fffffff3'>{{sym.8}}</div>
                     <div class='p' style= 'color:#fffffff3'>${{price.8}}</div>
@@ -314,7 +325,7 @@ Cryptocurrency Prices by Market Cap
     
             <div class='container'>
                 <ul>
-                    <img src="{% static img.9 %}" alt="Smiley face" width="50" height="50" style="border:2px ridge black">
+                    <img src="{% static img.9 %}" alt={{sym.9}}>
                     <div class='p' style= 'color:#fffffff3'>10.{{name.9}}</div>
                     <div class='p' style= 'color:#fffffff3'>{{sym.9}}</div>
                     <div class='p' style= 'color:#fffffff3'>${{price.9}}</div>
