@@ -1,0 +1,210 @@
+{% extends "base.html" %}
+{% block content %}
+
+<body style="background-color:rgba(46, 3, 75, 0.5);"></body>
+
+
+{% load static %}
+
+<head>
+
+    <title></title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
+        .table {
+            color: rgba(22, 15, 15, 0.644);
+            display: block;
+
+            overflow: auto;
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        
+        .tbl-header {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .bottom {
+            font-family: Open Sans;
+            font-size: 28px;
+            background-color: #343a40;
+            background-size: cover;
+            color: white;
+
+
+        }
+
+        .paragraph {
+            font-family: Open Sans;
+
+            background-color: #343a40;
+            background-size: cover;
+            color: white;
+
+
+        }
+
+        .transhist {
+            display: grid;
+            grid-template-columns: auto;
+            grid-template-rows: auto;
+            grid-template-areas:
+                '. title title .'
+                '. time value .';
+
+            grid-gap: 10px;
+        }
+
+        .time {
+            grid-column: 1 /2;
+            grid-row: 2;
+
+            text-align: left;
+            border: 1px solid;
+        }
+
+        .value_pos {
+            display: grid;
+            grid-column: 4;
+            grid-row: 2;
+            text-align: right;
+            border: 1px solid;
+            border-color:black;
+            color: green;
+
+        }
+        .value_neg {
+            display: grid;
+            grid-column: 4;
+            grid-row: 2;
+            text-align: right;
+            border: 1px solid;
+            border-color: black;
+            color: red;
+
+        }
+
+        .title_hist {
+            grid-row: 1;
+            grid-column: 1 /5;
+            text-align: center;
+            background-color: black;
+            max-height: 23px;
+            display: inline-block;
+
+        }
+        .btn {
+            background-color:rgba(46, 3, 75, 0.5);
+            
+            border: none;
+            color: white;
+            padding: 4px 6px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 1px 1px;
+            transition-duration: 0.4s;
+            cursor: pointer;
+
+        }
+
+
+
+        btn:hover {
+            background-color: #555555;
+            color: white;
+
+
+        }
+
+        a:hover {
+        color: white;
+        background-color: transparent;
+        text-decoration: none;
+        
+        }
+
+        a {
+        color: black;
+        background-color: transparent;
+        
+        }
+
+    </style>
+</head>
+
+<ul>
+    <img src="{% static img %}" alt="erg" width="125" height="125" style="border:2px ridge black"
+        background-color='white'>
+    <div class='bottom' style='color:#fffffff3'>{{name}}</div>
+    <div class='bottom' style='color:#fffffff3'>${{price}}</div>
+
+    {% if dir == 'pos' %}
+    <div class='bottom' style='color:#3ddf1df3'>+{{prc_chg_24h}}%</div>
+    {% else %}
+    <div class='bottom' style='color:red'>{{prc_chg_24h}}%</div>
+    {% endif %}
+
+
+
+
+</ul>
+
+
+
+
+<form method='POST' action='ergo'> {% csrf_token %}
+    {{ form}} <button class='btn shadow-none' type='submit' >Lookup
+  
+    </button>
+</form>
+
+
+<div class='paragraph'  text-align='center' >Info</div>
+<div class='paragraph'> Address:</div>
+<div class='paragraph' style='font-size:11px'>&nbsp {{address}}</div>
+<div class='paragraph' style='color:white'>Token Balance: {{address_bal}} ERG</div>
+<div class='paragraph' style='color:white'>Balance: ${{bal_USD}} USD</div>
+<div class='paragraph' style='color:white'>No. Trans: {{trans_amnt}}</div>
+<button class='btn copy-btn shadow-none' style='color:white' border-color:rgba(46, 3, 75, 0.5) font-family: Open Sans;background-color: #343a40;background-size: cover;  data-hex={{address}}>
+    
+    copy address
+</button>
+
+
+
+
+
+
+
+<div class='transhist'>
+    <div class='title_hist' style='color:white'>Transaction History</div>
+
+    <ul>
+        {% for o in trans_time %}
+
+
+
+        <div class='time'>&nbsp;{{o}}&nbsp;GMT </div>
+
+        {% endfor %}
+    </ul>
+    <ul>
+        {% for k in trans_val %}
+            {% if k > 0 %} 
+            <a href = '/' class='value_pos'>{{k}}&nbsp;ERG </a>
+            {% elif k < 0 %}  
+            <a href = '/' class='value_neg'>{{k}}&nbsp;ERG </a>
+
+            {% endif %}
+        {% endfor %}
+    </ul>
+</div>
+
+
+
+
+{% endblock %}

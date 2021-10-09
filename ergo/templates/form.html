@@ -1,0 +1,19 @@
+{% extends "base.html" %} 
+{% block content %} 
+
+{% if title %} 
+    <h1>{{ title }}</h1>
+    DETAILS
+{% endif %} 
+
+
+<form method='POST' action ='.' enctype='multipart/form-data'> {% csrf_token %}
+    {{ form.as_p}}
+<input class="btn btn-primary" type="submit" value="Save" />
+</form>
+
+
+
+
+
+{% endblock %} 
