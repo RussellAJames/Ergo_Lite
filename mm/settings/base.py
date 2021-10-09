@@ -37,7 +37,7 @@ X_CMC_PRO_API_KEY = os.environ.get('X_CMC_PRO_API_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = str(os.environ.get('DEBUG')) == '1' 
 
-ALLOWED_HOSTS = ['ergo-lite.herokuapp.com']
+ALLOWED_HOSTS = ['ergo-lite.herokuapp.com','127.0.0.1']
 
 LOGIN_URL = '/login'
 # Application definition
