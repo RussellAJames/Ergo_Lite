@@ -7,6 +7,40 @@
 
 
 
+body{
+    background-image:linear-gradient(to right,#4c4d52 0%,#d3b5ce 100%);
+
+
+}
+
+
+.dark-mode{
+    background-image:linear-gradient(to right,#3b4260 0%,#401d3b 100%);
+}
+
+
+button {
+    
+    border: none;
+    color: white;
+    opacity: 0.75;
+    padding: 2px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+  }
+  
+button:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  }
+
+
+
 @-webkit-keyframes colourful{
     0%  { background:-webkit-linear-gradient(80deg,#7d5dc6,#b06bc0,#e76b80,#e76b80,#bca3eb,#7fd989 100%);
         -webkit-background-clip: text;
@@ -139,6 +173,10 @@ h1 {
 
 
 
+
+
+
+
 #id_address{
     margin:auto;
     position:relative;
@@ -150,7 +188,7 @@ h1 {
 
 @media screen and (mid-width: 736px)
 {
-  .p{ font-size: 1px;
+  .p{ font-size: 2vw;
   }
 .grid {
     display: grid;

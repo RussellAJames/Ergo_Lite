@@ -1,6 +1,33 @@
 
 {% extends "base.html" %} 
 {% load static %}
+{% block device_theme %} 
+<button onclick="device_theme()" style="float: right;">
+    <img src="{% static 'Light.png' %}" width="40vw" height="40vw" alt="submit" id='theme' />
+    
+   </button>
+
+<script>
+function device_theme() {
+    var element = document.body;
+    element.classList.toggle("dark-mode");
+    var Image_Id = document.getElementById('theme');
+    if (Image_Id.src.match("/static/Light.png")) {
+                Image_Id.src ="/static/Dark.png";
+            }
+            else {
+                Image_Id.src = "/static/Light.png";
+            }
+        }        
+
+</script> 
+
+{% endblock %} 
+
+
+
+
+
 {% block page_title %} 
    
 
@@ -12,7 +39,7 @@
 
 
 {% block page_content %} 
-<body style="background-image:linear-gradient(to right,#3b4260 0%,#401d3b 100%);"></body>
+<body>
 
 
 
@@ -35,7 +62,7 @@
             display: block;
             grid-area:table;
             width:auto;
-            width:45vh;
+            width:100vw;
             height:fit-content;
             
             border: 1px solid black;
@@ -53,26 +80,30 @@
         }
         .p{
         font-family: Open Sans;
-        max-width: 5vw;
-        min-width: 3vw;
         
-        font-size:10px;
-        font-size:2vw;
-        font-weight: 400;
+        
+        font-size: 3vw;
+        font-weight: 200;
         display: block;
         text-align: justify;
         object-fit: cover;
-        transform: translateX(50%)
+        
         }
         
+
+        tbody{
+            width:100vw;
+        }
+
+
         .container{
-        min-width:20vw;
+        
         
         min-height: 4vh;
        
         white-space:nowrap;
         margin:0;
-        width:fit-content;
+        width:20vw;
         height:fit-content;
         padding: 1vh 1vw;
         display: block;
@@ -83,7 +114,7 @@
         }
 
         .container:hover{
-        min-width:20vw;
+        width:20vw;
         
         min-height: 4vh;
         background-color: #AD310B;
@@ -99,6 +130,7 @@
         margin-left: auto;
         margin-right: auto;
         text-align: justify;
+        transform: scale(1.1)
         }
 
 
@@ -136,7 +168,7 @@
 
     </style>
     </head>
-    <body>
+   
 
 
     <table >

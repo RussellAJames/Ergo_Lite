@@ -18,10 +18,11 @@
       grid-template-columns: 1fr;
       grid-template-rows: 1fr;
       grid-template-areas:
+      " device_theme "
       " title "
       " content"
       ".";
-      grid-gap: 10px;
+      
       grid-column: 1/-1;
       width: 100vw;
       
@@ -34,6 +35,12 @@
 
     <!-- Custom JS-->
    
+
+
+
+
+
+
 
 
 
@@ -51,6 +58,7 @@
 
     {% include 'navbar.html' %} 
     <div class = 'grid'>
+      <div class='device_theme'>{% block device_theme %} {% endblock %}</div>
       <div class='title'>{% block page_title %}{% endblock %}</div>
       
       <div class='header'>{% block page_header %}{% endblock %}</div>
