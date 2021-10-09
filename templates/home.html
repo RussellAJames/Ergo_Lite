@@ -11,7 +11,7 @@ Cryptocurrency Prices by Market Cap
 
 
 
-{% block content %} 
+{% block page_content %} 
 <body style="background-image:linear-gradient(to right,#3b4260 0%,#401d3b 100%);"></body>
 
 
@@ -27,10 +27,13 @@ Cryptocurrency Prices by Market Cap
         .table {
             color: rgba(22, 15, 15, 0.644);
             display: block;
+            grid-area:table;
+            width:auto;
+            
             
             overflow: auto;
             border: 1px solid black;
-            border-collapse: collapse;
+            
         }
         .tbl-header{
                 background-color: rgba(173, 50, 50, 0.3);
@@ -48,33 +51,33 @@ Cryptocurrency Prices by Market Cap
         min-width: 3vw;
         
         font-size:10px;
-        font-size:2vw;
+        font-size:1vw;
         font-weight: 400;
     
         }
         
         .container{
-        min-width:2vw;
-        max-width:20vw;
-        min-height: 5vh;
-        max-height: 20vh;
-        align-items: center;
+        min-width:20vw;
+        width:20vw;
+        min-height: 4vh;
+        max-height: 15vh;
+        white-space:nowrap;
+        
         padding: 1vh 1vw;
+        display: flex;
+        align-items: center;
         }
           
         .ul{
             max-width: 50vw;
             min-width:25vw;
         }
-        .th{
-            max-width: 50vw;
-            min-width:25vw;
-        }
+        
         img{
-            width:15vw;
-            height:15vw;
-            max-width: 50px;
-            max-height: 50px;
+            min-width:1vw;
+            min-height:1vw;
+            max-width: 5vw;
+            max-height: 5vw;
             border:2px ridge black;
             background-color:white;
             vertical-align: middle;
