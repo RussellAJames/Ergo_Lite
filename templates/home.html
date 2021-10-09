@@ -1,10 +1,10 @@
 
 {% extends "base.html" %} 
-
+{% load static %}
 {% block page_title %} 
    
 
-Cryptocurrency Prices by Market Cap
+<h1>Cryptocurrency Prices by Market Cap</h1>
 {% endblock %}
 
 
@@ -17,13 +17,19 @@ Cryptocurrency Prices by Market Cap
 
 
 
-{% load static %}
+
 <head>
     
     <title></title>
     
     <style>@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
         
+
+        
+
+
+
+
         .table {
             color: rgba(22, 15, 15, 0.644);
             display: block;
@@ -54,9 +60,9 @@ Cryptocurrency Prices by Market Cap
         font-size:2vw;
         font-weight: 400;
         display: block;
-        margin-left: auto;
-        margin-right: auto;
-    
+        text-align: justify;
+        object-fit: cover;
+        transform: translateX(50%)
         }
         
         .container{
@@ -70,10 +76,33 @@ Cryptocurrency Prices by Market Cap
         height:fit-content;
         padding: 1vh 1vw;
         display: block;
-        align-items: center;
+        float: right;
         margin-left: auto;
         margin-right: auto;
+        text-align: justify;
         }
+
+        .container:hover{
+        min-width:20vw;
+        
+        min-height: 4vh;
+        background-color: #AD310B;
+        -webkit-transition: background-color 1000ms linear;
+        transition: background-color 1000ms linear;
+        white-space:nowrap;
+        margin:0;
+        width:fit-content;
+        height:fit-content;
+        padding: 1vh 1vw;
+        display: block;
+        float: right;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: justify;
+        }
+
+
+
           
         .ul{
             
@@ -91,7 +120,8 @@ Cryptocurrency Prices by Market Cap
             
             display: block;
             
-            margin-left: 6vw;
+            margin-left: auto;
+            margin-right: auto;
 
         }
         th, td {
@@ -117,8 +147,7 @@ Cryptocurrency Prices by Market Cap
     <th scope='col'>    
     <div class='container'>
         <ul>
-            <img src="{% static img.0 %}" > 
-                       
+            <img src="{% static img.0 %}" >  
             <div class='p' style= 'color:#fffffff3'>1.{{name.0}}</div>
             <div class='p' style= 'color:#fffffff3'>{{sym.0}}</div>  
     
@@ -373,7 +402,7 @@ Cryptocurrency Prices by Market Cap
 </table>
 </body>
 
-<p class='paragraph' background-color='grey'>Trending Crypto</p>
+<p class='paragraph' >Trending Crypto</p>
 {% endblock %}
 
 {% block head_title %}
