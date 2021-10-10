@@ -1,10 +1,17 @@
 {% extends "base.html" %}
-{% block content %}
-
-<body style="background-image:linear-gradient(to right,#3b4260 0%,#401d3b 100%);"></body>
-
 
 {% load static %}
+
+
+
+
+
+
+
+
+
+{% block page_content %}
+
 
 <head>
 
@@ -13,6 +20,23 @@
     <style>
         @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
         @import url('http://fonts.cdnfonts.com/css/milliard');
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: 1fr;
+            grid-template-areas:
+            " device_theme "
+            " title "
+            " content"
+            ".";
+            
+            grid-column: 1/-1;
+            width: 100vw;
+            padding:1vw 1vh;
+  
+        }
+
+
 
         .table {
             color: rgba(22, 15, 15, 0.644);
@@ -30,12 +54,14 @@
         .bottom {
             font-family: Open Sans;
             font-size: 28px;
-            background-color: #343a40;
+            
             background-size: cover;
             color: white;
+            display:inline;
 
 
         }
+        
 
         .paragraph {
             font-family: Open Sans;
@@ -131,34 +157,75 @@
         a {
         color: black;
         background-color: transparent;
+        display: inline-block;
+        font-size: 12px;
         
         }
 
     </style>
 </head>
 
-<ul>
+
     <img src="{% static img %}" alt="erg" width="125" height="125" style="border:2px ridge black"
         background-color='white'>
-    <div class='bottom' style='color:#fffffff3'>{{name}}</div>
-    <div class='bottom' style='color:#fffffff3'>${{price}}</div>
 
+    <div class='bottom'>{{name}}
+    <br>
+    <a>${{price}}</a>
+    <br>
     {% if dir == 'pos' %}
-    <div class='bottom' style='color:#3ddf1df3'>+{{prc_chg_24h}}%</div>
+        <a>24h% </a>   <a style='color:#3ddf1df3'>+{{prc_chg_24h}}%</a>
     {% else %}
-    <div class='bottom' style='color:red'>{{prc_chg_24h}}%</div>
+        <a>24h% </a>    <a style='color:red'>{{prc_chg_24h}}%</a>
     {% endif %}
+    
+
+    </div>
 
 
 
-
-</ul>
 
 
 
 
 <form method='POST' action='ergo'> {% csrf_token %}
-    {{ form}} <button class='btn shadow-none' type='submit' >Lookup
+    {{ form}} <button class='btn shadow-none' type='submit' >
+
+
+
+        <svg width="60" height="29" viewBox="0 0 60 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g id="Frame 1" clip-path="url(#clip0)">
+            <g id="lightGroup">
+            <path id="light1" d="M30.4972 15.6366C31.1638 16.0217 31.1636 16.9839 30.4968 17.3687L14.7491 26.4556C14.0824 26.8403 13.2491 26.359 13.2493 25.5892L13.2537 7.40782C13.2539 6.63802 14.0873 6.15709 14.7539 6.54215L30.4972 15.6366Z" fill="#6F457D" fill-opacity="0.8"/>
+            </g>
+            <g id="darkGroup">
+            <path id="dark2" d="M21.4972 15.6366C22.1638 16.0217 22.1636 16.9839 21.4968 17.3687L5.74911 26.4556C5.08235 26.8403 4.24913 26.359 4.24932 25.5892L4.25368 7.40785C4.25386 6.63805 5.08731 6.15712 5.75388 6.54218L21.4972 15.6366Z" fill="#6F457D" fill-opacity="0.97"/>
+            <path id="dark1" d="M21.4972 15.6366C22.1638 16.0217 22.1636 16.9839 21.4968 17.3686L5.74911 26.4555C5.08235 26.8403 4.24913 26.3589 4.24932 25.5891L4.25368 7.40782C4.25386 6.63802 5.08731 6.15709 5.75388 6.54215L21.4972 15.6366Z" fill="#6F457D" fill-opacity="0.97"/>
+            <path id="dark3" d="M39.4972 15.6366C40.1638 16.0217 40.1636 16.9839 39.4968 17.3686L23.7491 26.4555C23.0824 26.8403 22.2491 26.3589 22.2493 25.5891L22.2537 7.40782C22.2539 6.63802 23.0873 6.15709 23.7539 6.54215L39.4972 15.6366Z" fill="#6F457D" fill-opacity="0.45"/>
+            </g>
+            </g>
+            <defs>
+            <clipPath id="clip0">
+            <rect width="60" height="29" fill="white"/>
+            </clipPath>
+            </defs>
+            </svg>
+            
+            
+        <script>
+        
+            const svg = document.getElementById('triangles');
+        
+            svg.onclick = (e) => {
+              const colors = ['red', 'blue', 'green', 'orange', 'pink', 'purple']
+              const rando = () => colors[Math.floor(Math.random() * colors.length)];
+              document.documentElement.style.cssText = `
+              --dark-color: ${rando()};
+              --light-color: ${rando()}; 
+              `
+            }
+        
+        </script>
   
     </button>
 </form>

@@ -1,35 +1,48 @@
 
 {% extends "base.html" %} 
 {% load static %}
-{% block device_theme %} 
-<button onclick="device_theme()" style="float: right;">
-    <img src="{% static 'Light.png' %}" width="40vw" height="40vw" alt="submit" id='theme' />
-    
-   </button>
 
-<script>
-function device_theme() {
-    var element = document.body;
-    element.classList.toggle("dark-mode");
-    var Image_Id = document.getElementById('theme');
-    if (Image_Id.src.match("/static/Light.png")) {
-                Image_Id.src ="/static/Dark.png";
-            }
-            else {
-                Image_Id.src = "/static/Light.png";
-            }
-        }        
-
-</script> 
-
-{% endblock %} 
 
 
 
 
 
 {% block page_title %} 
-   
+<svg width="60" height="29" viewBox="0 0 60 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g id="Frame 1" clip-path="url(#clip0)">
+    <g id="lightGroup">
+    <path id="light1" d="M30.4972 15.6366C31.1638 16.0217 31.1636 16.9839 30.4968 17.3687L14.7491 26.4556C14.0824 26.8403 13.2491 26.359 13.2493 25.5892L13.2537 7.40782C13.2539 6.63802 14.0873 6.15709 14.7539 6.54215L30.4972 15.6366Z" fill="#6F457D" fill-opacity="0.8"/>
+    </g>
+    <g id="darkGroup">
+    <path id="dark2" d="M21.4972 15.6366C22.1638 16.0217 22.1636 16.9839 21.4968 17.3687L5.74911 26.4556C5.08235 26.8403 4.24913 26.359 4.24932 25.5892L4.25368 7.40785C4.25386 6.63805 5.08731 6.15712 5.75388 6.54218L21.4972 15.6366Z" fill="#6F457D" fill-opacity="0.97"/>
+    <path id="dark1" d="M21.4972 15.6366C22.1638 16.0217 22.1636 16.9839 21.4968 17.3686L5.74911 26.4555C5.08235 26.8403 4.24913 26.3589 4.24932 25.5891L4.25368 7.40782C4.25386 6.63802 5.08731 6.15709 5.75388 6.54215L21.4972 15.6366Z" fill="#6F457D" fill-opacity="0.97"/>
+    <path id="dark3" d="M39.4972 15.6366C40.1638 16.0217 40.1636 16.9839 39.4968 17.3686L23.7491 26.4555C23.0824 26.8403 22.2491 26.3589 22.2493 25.5891L22.2537 7.40782C22.2539 6.63802 23.0873 6.15709 23.7539 6.54215L39.4972 15.6366Z" fill="#6F457D" fill-opacity="0.45"/>
+    </g>
+    </g>
+    <defs>
+    <clipPath id="clip0">
+    <rect width="60" height="29" fill="white"/>
+    </clipPath>
+    </defs>
+    </svg>
+    
+    
+<script>
+
+    const svg = document.getElementById('triangles');
+
+    svg.onclick = (e) => {
+      const colors = ['red', 'blue', 'green', 'orange', 'pink', 'purple']
+      const rando = () => colors[Math.floor(Math.random() * colors.length)];
+      document.documentElement.style.cssText = `
+      --dark-color: ${rando()};
+      --light-color: ${rando()}; 
+      `
+    }
+
+</script>
+
+
 
 <h1>Cryptocurrency Prices by Market Cap</h1>
 {% endblock %}
@@ -51,7 +64,20 @@ function device_theme() {
     
     <style>@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
         
-
+        .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr;
+      grid-template-areas:
+      " device_theme "
+      " title "
+      " content"
+      ".";
+      
+      grid-column: 1/-1;
+      width: 100vw;
+      
+    }
         
 
 
