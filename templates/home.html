@@ -8,6 +8,7 @@
 
 
 {% block page_title %} 
+<button class='btn shadow-none' type='submit'>
 <svg width="60" height="29" viewBox="0 0 60 29" fill="none" xmlns="http://www.w3.org/2000/svg">
     <g id="Frame 1" clip-path="url(#clip0)">
     <g id="lightGroup">
@@ -29,22 +30,13 @@
     
 <script>
 
-    const svg = document.getElementById('triangles');
-
-    svg.onclick = (e) => {
-      const colors = ['red', 'blue', 'green', 'orange', 'pink', 'purple']
-      const rando = () => colors[Math.floor(Math.random() * colors.length)];
-      document.documentElement.style.cssText = `
-      --dark-color: ${rando()};
-      --light-color: ${rando()}; 
-      `
-    }
+   
 
 </script>
+</button>
 
 
-
-<h1>Cryptocurrency Prices by Market Cap</h1>
+<h1>Cryptocurrencies</h1>
 {% endblock %}
 
 
@@ -67,21 +59,30 @@
         .grid {
       display: grid;
       grid-template-columns: 1fr;
-      grid-template-rows: 1fr;
+      grid-template-rows: 1fr ;
       grid-template-areas:
-      " device_theme "
-      " title "
-      " content"
+      "title device_theme"
+    
+      " content ."
       ".";
       
-      grid-column: 1/-1;
+      
       width: 100vw;
+      
       
     }
         
-
-
-
+        .device_theme{
+            grid-row: 1;
+            grid-column: 3;
+        }
+        .title{
+            grid-row: 1;
+            
+        }
+        .content{
+            grid-row: 2;
+        }
 
         .table {
             color: rgba(22, 15, 15, 0.644);

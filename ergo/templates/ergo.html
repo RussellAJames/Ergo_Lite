@@ -25,14 +25,15 @@
             grid-template-columns: 1fr;
             grid-template-rows: 1fr;
             grid-template-areas:
-            " device_theme "
+            "device_theme"
             " title "
             " content"
             ".";
             
             grid-column: 1/-1;
             width: 100vw;
-            padding:1vw 1vh;
+            padding: 1vw 1vw;
+            
   
         }
 
@@ -56,7 +57,7 @@
             font-size: 28px;
             
             background-size: cover;
-            color: white;
+            
             display:inline;
 
 
@@ -66,12 +67,18 @@
         .paragraph {
             font-family: Open Sans;
 
-            background-color: #343a40;
+            background-color: rgba(31, 27, 27, 0.116);
             background-size: cover;
-            color: white;
+            color: var(--font-color);
+            padding: 0.5vw;
+            
 
 
         }
+
+
+
+
 
         .transhist {
             display: grid;
@@ -148,17 +155,17 @@
         }
 
         a:hover {
-        color: white;
+        color: --font-color;
         background-color: transparent;
         text-decoration: none;
         
         }
 
-        a {
-        color: black;
+        h2 {
+        color: var(--font-color);
         background-color: transparent;
         display: inline-block;
-        font-size: 12px;
+        font-size: 21px;
         
         }
 
@@ -169,19 +176,19 @@
     <img src="{% static img %}" alt="erg" width="125" height="125" style="border:2px ridge black"
         background-color='white'>
 
-    <div class='bottom'>{{name}}
+    <div class='bottom'>
+    <h2>{{name}}</h2>
     <br>
-    <a>${{price}}</a>
+    <h2>${{price}}</h2>
     <br>
     {% if dir == 'pos' %}
-        <a>24h% </a>   <a style='color:#3ddf1df3'>+{{prc_chg_24h}}%</a>
+        <h2>24h% </h2>   <h2 style='color:#3ddf1df3'>+{{prc_chg_24h}}%</h2>
     {% else %}
-        <a>24h% </a>    <a style='color:red'>{{prc_chg_24h}}%</a>
+        <h2>24h% </h2>    <h2 style='color:red'>{{prc_chg_24h}}%</h2>
     {% endif %}
     
 
     </div>
-
 
 
 
@@ -214,17 +221,7 @@
             
         <script>
         
-            const svg = document.getElementById('triangles');
-        
-            svg.onclick = (e) => {
-              const colors = ['red', 'blue', 'green', 'orange', 'pink', 'purple']
-              const rando = () => colors[Math.floor(Math.random() * colors.length)];
-              document.documentElement.style.cssText = `
-              --dark-color: ${rando()};
-              --light-color: ${rando()}; 
-              `
-            }
-        
+
         </script>
   
     </button>
@@ -233,10 +230,12 @@
 
 <div class='paragraph'  text-align='center' >Info</div>
 <div class='paragraph'> Address:</div>
+
+
 <div class='paragraph' style='font-size:11px'>&nbsp {{address}}</div>
-<div class='paragraph' style='color:white'>Token Balance: {{address_bal}} ERG</div>
-<div class='paragraph' style='color:white'>Balance: ${{bal_USD}} USD</div>
-<div class='paragraph' style='color:white'>No. Trans: {{trans_amnt}}</div>
+<div class='paragraph'>Token Balance: {{address_bal}} ERG</div>
+<div class='paragraph'>Balance: ${{bal_USD}} USD</div>
+<div class='paragraph'>No. Trans: {{trans_amnt}}</div>
 <button class='btn copy-btn shadow-none' style='color:white' border-color:rgba(46, 3, 75, 0.5) font-family: Open Sans;background-color: #343a40;background-size: cover;  data-hex={{address}}>
     
     copy address
