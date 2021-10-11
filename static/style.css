@@ -6,7 +6,7 @@
 @font-face {
   font-family: 'milliardbold';
   src: 
-       url('static/fonts/MilliardBold.otf') format('otf');
+       url('static/fonts/MilliardBold.otf?#') format('otf');
   font-weight: normal;
   font-style: normal;
 
