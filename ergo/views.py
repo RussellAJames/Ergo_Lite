@@ -56,6 +56,7 @@ def ergo_page(request):
     trans_val = []
     trans_time = []
     trans_id = []
+    trans_hist = {}
     erg['price'] = float(str("%.4f" % erg['price']))
     
     if form.is_valid():
@@ -76,10 +77,9 @@ def ergo_page(request):
             address_bal=float(str("%.4f" % address_bal))
             bal_USD = address_bal * erg['price']
             bal_USD=str("%.4f" % bal_USD)
-       
 
         url='https://api.ergoplatform.com/api/v1/addresses/{0}/transactions'.format(address)
-        response = requests.get(url)
+        response = requests.get(url, params={'limit':250})
         asset = json.loads(response.content.decode())
         
         for i in asset['items']:
@@ -89,15 +89,21 @@ def ergo_page(request):
             
                     if k['address'] != address:
                         amnt += k['value']
-
+                
                 trans_val.append(float(str("%.4f" % (-1*amnt / (10**9)))))
                 trans_time.append(datetime.datetime.fromtimestamp(i['timestamp']/1000))
+                
+
             else:
                 for k in i['outputs']:
                     if k['address'] == address:
-                        trans_val.append(float(str("%.4f" % (k['value']/(10**9)))))
+                        
+                        
                         trans_time.append(datetime.datetime.fromtimestamp(i['timestamp']/1000))
-
+                        
+                        trans_val.append(float(str("%.4f" % (k['value']/(10**9)))))
+                        
+                        
 
     erg['trans_val'] = trans_val
     erg['trans_time'] = trans_time
@@ -111,8 +117,8 @@ def ergo_page(request):
 
     context = {'title':'Ergo','name':erg['name'],'sym':erg['sym'],'price':erg['price'],
     'prc_chg_24h':erg['percent_change_24h'], 'img':erg['sym'] + '.png' , 'dir':erg['dir'], 
-    'form':form,'address_bal':address_bal, 'address':address, 'bal_USD':bal_USD, 'trans_val' : erg['trans_val'],
-    'trans_time':erg['trans_time'],'trans_amnt':len(trans_val) }
+    'form':form,'address_bal':address_bal, 'address':address, 'bal_USD':bal_USD, 'trans_val' :erg['trans_val'],
+    'trans_time':erg['trans_time'],'trans_amnt':len(trans_val), }
    
     return render(request, 'ergo.html', context)
 

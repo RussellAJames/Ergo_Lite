@@ -8,6 +8,30 @@
 
 
 {% block page_title %} 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <button class='btn shadow-none' type='submit'>
 <svg width="60" height="29" viewBox="0 0 60 29" fill="none" xmlns="http://www.w3.org/2000/svg">
     <g id="Frame 1" clip-path="url(#clip0)">
@@ -63,9 +87,9 @@
       grid-template-areas:
       "title device_theme"
     
-      " content ."
+      "content content"
       ".";
-      
+      overflow: wrap;
       
       width: 100vw;
       
@@ -134,7 +158,7 @@
         height:fit-content;
         padding: 1vh 1vw;
         display: block;
-        float: right;
+        
         margin-left: auto;
         margin-right: auto;
         text-align: justify;
@@ -144,20 +168,22 @@
         width:20vw;
         
         min-height: 4vh;
-        background-color: #AD310B;
+        background-color: #ad310b88;
         -webkit-transition: background-color 1000ms linear;
         transition: background-color 1000ms linear;
         white-space:nowrap;
         margin:0;
         width:fit-content;
-        height:fit-content;
+        height:auto;
         padding: 1vh 1vw;
-        display: block;
-        float: right;
+        position: relative;
+        display: flex;
+        
         margin-left: auto;
         margin-right: auto;
         text-align: justify;
-        transform: scale(1.1)
+        transform: scale(1.1);
+        bottom:1px;
         }
 
 
@@ -207,10 +233,10 @@
     <div class='container'>
         <ul>
             <img src="{% static img.0 %}" >  
-            <div class='p' style= 'color:#fffffff3'>1.{{name.0}}</div>
-            <div class='p' style= 'color:#fffffff3'>{{sym.0}}</div>  
+            <div class='p' >1.{{name.0}}</div>
+            <div class='p'>{{sym.0}}</div>  
     
-            <div class='p' style= 'color:#fffffff3'>${{price.0}}</div>
+            <div class='p'>${{price.0}}</div>
             {% if changedir1.0 == 'pos' %} 
                 <div class='p' style= 'color:#3ddf1df3'>{{change1h.0}}%</div>
             {% else %}
@@ -238,9 +264,9 @@
 
             <img src="{% static img.1 %}" alt={{sym.1}}>
  
-            <div class='p' style= 'color:#fffffff3'>2.{{name.1}}</div>
-            <div class='p' style= 'color:#fffffff3'>{{sym.1}}</div>
-            <div class='p' style= 'color:#fffffff3'>${{price.1}}</div>
+            <div class='p'>2.{{name.1}}</div>
+            <div class='p'>{{sym.1}}</div>
+            <div class='p'>${{price.1}}</div>
             {% if changedir1.1 == 'pos' %} 
                 <div class='p' style= 'color:#3ddf1df3'>{{change1h.1}}%</div>
             {% else %}
@@ -267,9 +293,9 @@
 
             <ul>
                 <img src="{% static img.2 %}" alt={{sym.2}}>
-                <div class='p' style= 'color:#fffffff3'>3.{{name.2}}</div>
-                <div class='p' style= 'color:#fffffff3'>{{sym.2}}</div>
-                <div class='p' style= 'color:#fffffff3'>${{price.2}}</div>
+                <div class='p'>3.{{name.2}}</div>
+                <div class='p'>{{sym.2}}</div>
+                <div class='p'>${{price.2}}</div>
                 {% if changedir1.2 == 'pos' %} 
                     <div class='p' style= 'color:#3ddf1df3'>{{change1h.2}}%</div>
                 {% else %}
@@ -296,9 +322,9 @@
         <div class='container'>
             <ul>
                 <img src="{% static img.3 %}" alt={{sym.3}} >
-                <div class='p' style= 'color:#fffffff3'>4.{{name.3}}</div>
-                <div class='p' style= 'color:#fffffff3'>{{sym.3}}</div>
-                <div class='p' style= 'color:#fffffff3'>${{price.3}}</div>
+                <div class='p'>4.{{name.3}}</div>
+                <div class='p'>{{sym.3}}</div>
+                <div class='p'>${{price.3}}</div>
                 {% if changedir1.3 == 'pos' %} 
                     <div class='p' style= 'color:#3ddf1df3'>{{change1h.3}}%</div>
                 {% else %}
@@ -321,9 +347,9 @@
         <div class='container'>
             <ul>
                 <img src="{% static img.4 %}" alt={{sym.4}} >
-                <div class='p' style= 'color:#fffffff3'>5.{{name.4}}</div>
-                <div class='p' style= 'color:#fffffff3'>{{sym.4}}</div>
-                <div class='p' style= 'color:#fffffff3'>${{price.4}}</div>
+                <div class='p'>5.{{name.4}}</div>
+                <div class='p'>{{sym.4}}</div>
+                <div class='p'>${{price.4}}</div>
                 {% if changedir1.4 == 'pos' %}  
                     <div class='p' style= 'color:#3ddf1df3'>{{change1h.4}}%</div>
                 {% else %}
@@ -345,9 +371,9 @@
         <div class='container'>
             <ul>
                 <img src="{% static img.5 %}" alt={{sym.5}}>
-                <div class='p' style= 'color:#fffffff3'>6.{{name.5}}</div>
-                <div class='p' style= 'color:#fffffff3'>{{sym.5}}</div>
-                <div class='p' style= 'color:#fffffff3'>${{price.5}}</div>
+                <div class='p'>6.{{name.5}}</div>
+                <div class='p'>{{sym.5}}</div>
+                <div class='p'>${{price.5}}</div>
                 {% if changedir1.5 == 'pos' %} 
                     <div class='p' style= 'color:#3ddf1df3'>{{change1h.5}}%</div>
                 {% else %}
@@ -368,9 +394,9 @@
         <div class='container'>
             <ul>
                 <img src="{% static img.6 %}" alt={{sym.6}}>
-                <div class='p' style= 'color:#fffffff3'>7.{{name.6}}</div>
-                <div class='p' style= 'color:#fffffff3'>{{sym.6}}</div>
-                <div class='p' style= 'color:#fffffff3'>${{price.6}}</div>
+                <div class='p'>7.{{name.6}}</div>
+                <div class='p'>{{sym.6}}</div>
+                <div class='p'>${{price.6}}</div>
                 {% if changedir1.6 == 'pos' %} 
                     <div class='p' style= 'color:#3ddf1df3'>{{change1h.6}}%</div>
                 {% else %}
@@ -390,9 +416,9 @@
             <div class='container'>
                 <ul>
                     <img src="{% static img.7 %}" alt={{sym.7}}>
-                    <div class='p' style= 'color:#fffffff3'>8.{{name.7}}</div>
-                    <div class='p' style= 'color:#fffffff3'>{{sym.7}}</div>
-                    <div class='p' style= 'color:#fffffff3'>${{price.7}}</div>
+                    <div class='p'>8.{{name.7}}</div>
+                    <div class='p'>{{sym.7}}</div>
+                    <div class='p'>${{price.7}}</div>
                     {% if changedir1.7 == 'pos' %} 
                         <div class='p' style= 'color:#3ddf1df3'>{{change1h.7}}%</div>
                     {% else %}
@@ -413,9 +439,9 @@
             <div class='container'>
                 <ul>
                     <img src="{% static img.8 %}" alt={{sym.8}}>
-                    <div class='p' style= 'color:#fffffff3'>9.{{name.8}}</div>
-                    <div class='p' style= 'color:#fffffff3'>{{sym.8}}</div>
-                    <div class='p' style= 'color:#fffffff3'>${{price.8}}</div>
+                    <div class='p'>9.{{name.8}}</div>
+                    <div class='p'>{{sym.8}}</div>
+                    <div class='p'>${{price.8}}</div>
                     {% if changedir1.8 == 'pos' %} 
                         <div class='p' style= 'color:#3ddf1df3'>{{change1h.8}}%</div>
                     {% else %}
@@ -436,9 +462,9 @@
             <div class='container'>
                 <ul>
                     <img src="{% static img.9 %}" alt={{sym.9}}>
-                    <div class='p' style= 'color:#fffffff3'>10.{{name.9}}</div>
-                    <div class='p' style= 'color:#fffffff3'>{{sym.9}}</div>
-                    <div class='p' style= 'color:#fffffff3'>${{price.9}}</div>
+                    <div class='p'>10.{{name.9}}</div>
+                    <div class='p'>{{sym.9}}</div>
+                    <div class='p'>${{price.9}}</div>
                     {% if changedir1.9 == 'pos' %} 
                         <div class='p' style= 'color:#3ddf1df3'>{{change1h.9}}% </div>
                     {% else %}

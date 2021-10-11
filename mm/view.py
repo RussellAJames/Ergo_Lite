@@ -43,3 +43,8 @@ def home_page(request):
     
     return render(request, "home.html", context)
 
+def contact_page(request):
+    context = {}
+
+
+    return render(request, "contact.html", context)

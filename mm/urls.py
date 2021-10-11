@@ -22,9 +22,11 @@ from django.conf.urls.static import static
 
 from mm.view import  home_page
 from ergo.views import ergo_page,wallet
+from mm.view import contact_page
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_page),
-    path('ergo',ergo_page)
+    path('ergo',ergo_page),
+    path('contact', contact_page)
 ]

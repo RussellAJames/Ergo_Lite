@@ -3,7 +3,10 @@
 {% load static %}
 
 
+{% block page_title %} 
+<h1 class='contact'> Ergo Address Lookup</h1>
 
+{% endblock %} 
 
 
 
@@ -25,10 +28,10 @@
             grid-template-columns: 1fr;
             grid-template-rows: 1fr;
             grid-template-areas:
-            "device_theme"
-            " title "
-            " content"
-            ".";
+            "title device_theme"
+
+            "content content"
+            ". .";
             
             grid-column: 1/-1;
             width: 100vw;
@@ -94,29 +97,36 @@
         .time {
             grid-column: 1 /2;
             grid-row: 2;
-
+            font-size:14px;
             text-align: left;
             border: 1px solid;
+            border-bottom: 1px solid #aaa;
+            
         }
 
         .value_pos {
             display: grid;
             grid-column: 4;
             grid-row: 2;
+            font-size:14px;
             text-align: right;
             border: 1px solid;
             border-color:black;
             color: green;
-
+            border-bottom: 1px solid #aaa;
+            
         }
         .value_neg {
             display: grid;
             grid-column: 4;
+            font-size:14px;
             grid-row: 2;
             text-align: right;
             border: 1px solid;
             border-color: black;
             color: red;
+            border-bottom: 1px solid #aaa;
+            
 
         }
 
@@ -124,16 +134,18 @@
             grid-row: 1;
             grid-column: 1 /5;
             text-align: center;
-            background-color: black;
+            background-color: var(--bg-color);
             max-height: 23px;
             display: inline-block;
+            
+            color: var(--font-color)
 
         }
         .btn {
             background-color:rgba(46, 3, 75, 0.5);
             
             border: none;
-            color: white;
+            color:var(--font-color);
             padding: 4px 6px;
             text-align: center;
             text-decoration: none;
@@ -149,7 +161,7 @@
 
         btn:hover {
             background-color: #555555;
-            color: white;
+            
 
 
         }
@@ -172,19 +184,18 @@
     </style>
 </head>
 
-
-    <img src="{% static img %}" alt="erg" width="125" height="125" style="border:2px ridge black"
-        background-color='white'>
-
+    
+    <img src="{% static img %}" alt="erg" width="125" height="125" style="border:2px ridge black">
+    <br>
     <div class='bottom'>
     <h2>{{name}}</h2>
     <br>
-    <h2>${{price}}</h2>
+    <h2>Price (USD): ${{price}}</h2>
     <br>
     {% if dir == 'pos' %}
-        <h2>24h% </h2>   <h2 style='color:#3ddf1df3'>+{{prc_chg_24h}}%</h2>
+        <h2>24h% change:  </h2>   <h2 style='color:#3ddf1df3'>+{{prc_chg_24h}}%</h2>
     {% else %}
-        <h2>24h% </h2>    <h2 style='color:red'>{{prc_chg_24h}}%</h2>
+        <h2>24h% change: </h2>    <h2 style='color:red'>{{prc_chg_24h}}%</h2>
     {% endif %}
     
 
@@ -195,8 +206,9 @@
 
 
 
-<form method='POST' action='ergo'> {% csrf_token %}
-    {{ form}} <button class='btn shadow-none' type='submit' >
+<form method='POST' action='ergo' onfocus="this.value=''"> {% csrf_token %}
+    
+    {{ form}} <button class='button-cp' type='submit'  >
 
 
 
@@ -219,27 +231,39 @@
             </svg>
             
             
-        <script>
         
-
-        </script>
   
     </button>
+    <button class='button-cp'  onclick="document.getElementById('id_address').value = ''">Clear Address</button>
+
+
+
+
+    
 </form>
 
 
+<button class='btn copy-btn shadow-none' style='display: inline;'  border-color:rgba(46, 3, 75, 0.5) font-family: Open Sans;background-color: #343a40;background-size: cover;  data-hex={{address}}>
+    
+    &nbsp; copy address &nbsp;
+ </button>
+
+<button class='btn shadow-none' style='display: inline;'   onclick="document.getElementById('id_address').value = '9hQYD9bCbZGkJ8N81Pkd3xFr6R4pzywetZM6q7CJdAJwkjXhE4T'" border-color:rgba(46, 3, 75, 0.5) font-family: Open Sans;background-color: #343a40;background-size: cover;>
+    
+    &nbsp; use a test address? &nbsp;
+</button>
+
+
+
+
 <div class='paragraph'  text-align='center' >Info</div>
-<div class='paragraph'> Address:</div>
+<div class='paragraph'> Address: </div>
 
 
 <div class='paragraph' style='font-size:11px'>&nbsp {{address}}</div>
 <div class='paragraph'>Token Balance: {{address_bal}} ERG</div>
 <div class='paragraph'>Balance: ${{bal_USD}} USD</div>
 <div class='paragraph'>No. Trans: {{trans_amnt}}</div>
-<button class='btn copy-btn shadow-none' style='color:white' border-color:rgba(46, 3, 75, 0.5) font-family: Open Sans;background-color: #343a40;background-size: cover;  data-hex={{address}}>
-    
-    copy address
-</button>
 
 
 
@@ -247,30 +271,47 @@
 
 
 
-<div class='transhist'>
-    <div class='title_hist' style='color:white'>Transaction History</div>
 
-    <ul>
-        {% for o in trans_time %}
+ 
+    <div class='transhist'>
+        <div class='title_hist' >Transaction History</div>
+
+        <ul>
+            
+                
+
+            
+            {% for i in trans_time %}
+                
 
 
+                <div class='time'>&nbsp;{{i}}&nbsp;GMT </div>
+            
+            {% endfor %}
+            
+            
+        
 
-        <div class='time'>&nbsp;{{o}}&nbsp;GMT </div>
-
-        {% endfor %}
-    </ul>
-    <ul>
-        {% for k in trans_val %}
+      
+        </ul>        
+        <u1>
+            {% for k in trans_val %}
             {% if k > 0 %} 
-            <a href = '/' class='value_pos'>{{k}}&nbsp;ERG </a>
+            <div class='value_pos'>{{k}}&nbsp;ERG</div>
+            
             {% elif k < 0 %}  
-            <a href = '/' class='value_neg'>{{k}}&nbsp;ERG </a>
-
-            {% endif %}
+            <div class='value_neg'>{{k}}&nbsp;ERG</div>
+            
+        {% endif %}
         {% endfor %}
-    </ul>
-</div>
 
+
+
+
+
+    
+        </u1>
+    </div>
 
 
 
