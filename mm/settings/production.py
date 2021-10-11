@@ -88,6 +88,13 @@ TEMPLATES = [
 WSGI_APPLICATION = 'mm.wsgi.application'
 
 
+
+if DEBUG:
+    import mimetypes
+    mimetypes.add_type("application/font-woff", ".woff", True)
+
+
+
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 

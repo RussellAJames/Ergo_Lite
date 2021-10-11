@@ -34,8 +34,15 @@ X_CMC_PRO_API_KEY = os.environ.get('X_CMC_PRO_API_KEY')
 
 
 
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = str(os.environ.get('DEBUG')) == '1'
+
+
+
+if DEBUG:
+    import mimetypes
+    mimetypes.add_type("application/font-woff", ".woff", True)
 
 ALLOWED_HOSTS = ['ergo-lite.herokuapp.com','127.0.0.1']
 

@@ -33,7 +33,6 @@ X_CMC_PRO_API_KEY = os.environ.get('X_CMC_PRO_API_KEY')
 
 
 
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = str(os.environ.get('DEBUG')) == '1' 
 
@@ -67,6 +66,17 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'mm.urls'
+
+
+
+if DEBUG:
+    import mimetypes
+    mimetypes.add_type("application/font-woff", ".woff", True)
+
+
+
+
+
 
 TEMPLATES = [
     {
