@@ -5,14 +5,7 @@
 }
 
 
-@font-face {
-  font-family: 'milliardbold';
-  src: 
-       url('static/fonts/milliardbold_1-webfont.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
 
-}
 
 
 :root {
