@@ -7,7 +7,7 @@ from django.core.validators import RegexValidator
 
 class WalletLookupModelForm(forms.ModelForm):
     address = forms.CharField(
-        max_length=300, 
+        max_length=900, 
         
         validators=[validate_address]
         

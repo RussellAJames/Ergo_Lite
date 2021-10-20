@@ -9,7 +9,7 @@ from ergo.validators import validate_address
 class wallet(models.Model):
     print('hello??')
     address = models.CharField(
-        max_length=300, 
+        max_length=900, 
         
         validators=[validate_address
         ]
