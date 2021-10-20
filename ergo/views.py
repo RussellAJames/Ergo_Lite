@@ -63,8 +63,8 @@ def ergo_page(request):
         
         obj = form.save(commit=False)
         
-        obj.user = request.user
-        obj.save()
+        #obj.user = request.user
+        #obj.save()
         address = obj.address
         
         form = WalletLookupModelForm(request.POST or None)
