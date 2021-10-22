@@ -32,4 +32,3 @@ numpy
 pandas
 datetime
 kaleido
-pytz
