@@ -135,7 +135,7 @@
             grid-column: 1 /5;
             text-align: center;
             background-color: var(--bg-color);
-            max-height: 23px;
+            max-height: auto;
             display: inline-block;
             
             color: var(--font-color)
@@ -186,16 +186,20 @@
 
     
     <img src="{% static img %}" alt="erg" width="125" height="125" style="border:2px ridge black">
+    <h2 style="float:'top';font-size:1em;"> In the last 24hrs of  Ergo has had a high of {{daily_high}} CAD and a low of {{daily_low}} CAD
+    <h2 style='font-size:0.75em'> ( Updated : {{daily_open_time}} -- {{last_updated_at}})</h2> </h2>
     <br>
     <div class='bottom'>
     <h2>{{name}}</h2>
     <br>
-    <h2>Price (USD): ${{price}}</h2>
+    <h2>Price (CAD): ${{price}}</h2>
     <br>
     {% if dir == 'pos' %}
-        <h2>24h% change:  </h2>   <h2 style='color:#3ddf1df3'>+{{prc_chg_24h}}%</h2>
+        <h2>24h% change:  </h2>   <h2 style='color:#3ddf1df3'>+{{prc_chg_24h}}%</h2> <br>
+        <h2>1h% change:</h2>  <h2 style='color:#3ddf1df3'>{{price_change_percentage_1hr}}%</h2>
     {% else %}
-        <h2>24h% change: </h2>    <h2 style='color:red'>{{prc_chg_24h}}%</h2>
+        <h2>24h% change: </h2>    <h2 style='color:red'>{{prc_chg_24h}}%</h2> <br>
+        <h2>1h% change:</h2>  <h2 style='color:red'>{{price_change_percentage_1hr}}%</h2>
     {% endif %}
     <br>
     <img src = "{% static fig1 %}" alt='comparison_btc_erg'  style='width:25%;max-width:50vw;background: rgba(0, 0, 0, 0);'>
@@ -262,7 +266,7 @@
 
 <div class='paragraph' style='font-size:11px'>&nbsp {{address}}</div>
 <div class='paragraph'>Token Balance: {{address_bal}} ERG</div>
-<div class='paragraph'>Balance: ${{bal_USD}} USD</div>
+<div class='paragraph'>Balance: ${{bal_cad}} CAD</div>
 <div class='paragraph'>No. Trans: {{trans_amnt}}</div>
 
 

@@ -12,17 +12,19 @@ from django.http import HttpResponse
 import json,requests
 from .models import wallet
 import plotly.graph_objects as go
-
+import pandas as pd
 from plotly.graph_objs import *
 
 
 from pycoingecko import CoinGeckoAPI
-from datetime import datetime
+from datetime import datetime as dt
 import plotly.graph_objs as go
 import numpy as np
 import plotly.express as px
 import pytz
 est= pytz.timezone('US/Eastern')
+
+
 
 cg = CoinGeckoAPI()
 
@@ -43,7 +45,7 @@ val_list_erg = []
 #times = datetime.fromtimestamp(ts/1000).astimezone(est)
 for i in bitcoin_candle_31:
    # print(i[0])
-    time_list.append(datetime.fromtimestamp(i[0]/1000).astimezone(est))
+    time_list.append(dt.fromtimestamp(i[0]/1000).astimezone(est))
 
 for i in bitcoin_candle_31:
     open_val = i[1]
@@ -59,9 +61,7 @@ for i in ergo_candle_31:
 
 
 
-test = datetime.now(est)
-format1 = '%Y-%m-%d %H:%M:%S %Z%z'
-test =  datetime.now(est).strftime("%Y-%m-%d %H:%M:%S")
+
 
 
 years = time_list
@@ -103,18 +103,77 @@ fig.update_layout(
 fig.write_image("./static/fig1.png")
 
 
+def day_suffix(day_of_week):
+    return 'th' if 11<=day_of_week<=13 else {1:'st',2:'nd',3:'rd'}.get(day_of_week%10, 'th')
+
+day_format = '%B {S}, %Y - %H:%M:%S %p'
+def add_day_suffix(date):
+    return date.strftime(day_format).replace('{S}', str(date.day) + day_suffix(date.day))
 
 
 
 
 
+
+
+ergo_candle_1 = cg.get_coin_ohlc_by_id(id='ergo', days=1, vs_currency='cad')
+daily_df =pd.DataFrame(data=ergo_candle_1, columns=['time','open','high','low','close'])
+daily_df['time']=daily_df['time'].apply(lambda x: dt.fromtimestamp(x/1000).astimezone(est))
+
+daily_high = daily_df['high'].max()
+daily_low = daily_df['low'].min()
+daily_open = daily_df['open'].loc[0]
+
+
+
+
+erg = cg.get_price(ids='ergo',vs_currencies='cad,usd',include_market_cap='true', include_24hr_vol='true', include_24hr_change='true', include_last_updated_at='true')
+erg = erg['ergo']
+
+
+asset  = requests.get('https://api.coingecko.com/api/v3/coins/ergo?localization=en')
+
+asset = json.loads(asset.content.decode())
+
+crypto_ranking = asset['market_data']['market_cap_rank']
+price_high_24 = asset['market_data']['high_24h']['cad']
+price_low_24 = asset['market_data']['low_24h']['cad']
+
+price_change_24hrs = asset['market_data']['price_change_24h_in_currency']['cad']
+#price_change_1hrs = asset['market_data']['price_change_1h_in_currency']['cad']
+#price_change_7d = asset['market_data']['price_change_7d_in_currency']['cad']
+#price_change_30d = asset['market_data']['price_change_30d_in_currency']['cad']
+
+price_change_percentage_1hr = float(str("%.2f" %  asset['market_data']['price_change_percentage_1h_in_currency']['cad']))
+
+
+price_change_percentage_24hrs =float(str("%.2f" %  asset['market_data']['price_change_percentage_24h_in_currency']['cad']))
+
+
+
+price_change_percentage_7d = asset['market_data']['price_change_percentage_7d_in_currency']['cad']
+price_change_percentage_30d = asset['market_data']['price_change_percentage_30d_in_currency']['cad']
+price_change_percentage_1yr = asset['market_data']['price_change_percentage_1y_in_currency']['cad']
+
+
+
+
+market_cap_change_24h =  asset['market_data']['market_cap_change_24h_in_currency']['cad']
+market_cap_change_percentage_24h = asset['market_data']['market_cap_change_percentage_24h_in_currency']['cad']
+total_supply = asset['market_data']['total_supply']
+current_block_time = asset['block_time_in_minutes']
+coin_description = asset['description']['en']
+daily_open_time = dt.now()
+delta = datetime.timedelta(days=-1)
+daily_open_time = add_day_suffix((dt.now() +delta).astimezone(est))
+last_updated = add_day_suffix(dt.now().astimezone(est))
 
 
 
 def ergo_page(request):
     h = []
-    erg = my_cron_job2(h)
-    if float(erg['percent_change_24h']) > 0 :
+    erg['cad_24h_change'] = float(str("%.2f" % erg['cad_24h_change']))
+    if float(erg['cad_24h_change']) > 0 :
         erg['dir'] = 'pos'
     else: erg['dir'] = 'neg'
     
@@ -162,12 +221,12 @@ def ergo_page(request):
     
     address_bal = ''
     address = ''
-    bal_USD = ''
+
     trans_val = []
     trans_time = []
-    trans_id = []
-    trans_hist = {}
-    erg['price'] = float(str("%.4f" % erg['price']))
+
+    address_bal_formatted = ''
+    bal_cad = ""
     
     if form.is_valid():
         
@@ -185,8 +244,9 @@ def ergo_page(request):
 
         if type(address_bal) == float:
             address_bal=float(str("%.4f" % address_bal))
-            bal_USD = address_bal * erg['price']
-            bal_USD=str("%.4f" % bal_USD)
+            bal_cad = address_bal * erg['cad']
+            address_bal_formatted="{:,}".format(float(str("%.4f" % address_bal)))
+            bal_cad="{:,}".format(float(str("%.4f" % bal_cad)))
 
         url='https://api.ergoplatform.com/api/v1/addresses/{0}/transactions'.format(address)
         
@@ -210,7 +270,7 @@ def ergo_page(request):
                 
                 trans_val.append(float(str("%.4f" % (-1*amnt / (10**9)))))
 
-                trans_time.append(datetime.fromtimestamp(i['timestamp']/1000).astimezone(est))
+                trans_time.append(dt.fromtimestamp(i['timestamp']/1000).astimezone(est))
                 
 
             else:
@@ -218,7 +278,7 @@ def ergo_page(request):
                     if k['address'] == address:
                         
                         
-                        trans_time.append(datetime.fromtimestamp(i['timestamp']/1000).astimezone(est))
+                        trans_time.append(dt.fromtimestamp(i['timestamp']/1000).astimezone(est))
                         
                         trans_val.append(float(str("%.4f" % (k['value']/(10**9)))))
                         
@@ -226,19 +286,34 @@ def ergo_page(request):
 
     erg['trans_val'] = trans_val
     erg['trans_time'] = trans_time
-
-        
-
-    
-    
     
         
 
-    context = {'title':'Ergo','name':erg['name'],'sym':erg['sym'],'price':erg['price'],
-    'prc_chg_24h':erg['percent_change_24h'], 'img':erg['sym'] + '.png' , 'dir':erg['dir'], 
-    'form':form,'address_bal':address_bal, 'address':address, 'bal_USD':bal_USD, 'trans_val' :erg['trans_val'],
-    'trans_time':erg['trans_time'],'trans_amnt':len(trans_val), 'fig1' : 'fig1.png'}
+    
+    
+    
+        
+
+    context = {'title':'Ergo','name':'Ergo','sym':'ERG','price':erg['cad'],
+    'prc_chg_24h':price_change_percentage_24hrs, 'img':'ERG' + '.png' , 'dir':erg['dir'], 
+    'form':form,'address_bal':address_bal_formatted, 'address':address, 'bal_cad':bal_cad, 'trans_val' :erg['trans_val'],
+    'trans_time':erg['trans_time'],'trans_amnt':len(trans_val), 'fig1' : 'fig1.png',
+    'daily_high':price_high_24,
+    'daily_low':price_low_24,
+    'daily_open':daily_open,
+    'daily_open_time':daily_open_time,
+    'last_updated_at' :last_updated,
+    'rank':crypto_ranking,
+    'price_change_percentage_1hr':price_change_percentage_1hr,
+    'desc':coin_description,
+    'ttl_supply':total_supply,
+    'block_time':current_block_time,
+    'market_cap_change_24h':market_cap_change_24h,
+    'market_cap_change_percentage_24h':market_cap_change_percentage_24h,
+
+    }
    
     return render(request, 'ergo.html', context)
 
 
+ 
