@@ -30,3 +30,6 @@ plotly
 pycoingecko
 numpy
 pandas
+datetime
+kaleido
+pytz
