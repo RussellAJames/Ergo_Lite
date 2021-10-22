@@ -197,8 +197,8 @@
     {% else %}
         <h2>24h% change: </h2>    <h2 style='color:red'>{{prc_chg_24h}}%</h2>
     {% endif %}
-    
-
+    <br>
+    <img src = "{% static fig1 %}" style='background: rgba(0, 0, 0, 0);'>
     </div>
 
 
@@ -257,7 +257,7 @@
 
 
 <div class='paragraph'  text-align='center' >Info</div>
-<div class='paragraph'> Address: </div>
+<div class='paragraph'> Address:    </div>
 
 
 <div class='paragraph' style='font-size:11px'>&nbsp {{address}}</div>
@@ -278,14 +278,14 @@
 
         <ul>
             
-                
+               
 
             
             {% for i in trans_time %}
                 
 
 
-                <div class='time'>&nbsp;{{i}}&nbsp;GMT </div>
+                <div class='time'>&nbsp;{{i}}&nbsp;EST </div>
             
             {% endfor %}
             
