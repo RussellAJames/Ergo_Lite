@@ -28,3 +28,5 @@ pytz==2017.2
 whitenoise == 5.3.
 plotly
 pycoingecko
+numpy
+pandas
