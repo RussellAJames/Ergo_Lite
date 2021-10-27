@@ -87,6 +87,10 @@ body {
   color:var(--font-color);
 }
 
+.input#id_address{
+  width: 110%;
+}
+
 .button-cp{
 
   display: inline-block;
@@ -235,7 +239,7 @@ paragraph {
   background-size: cover;
   color: var(--font-color);
   padding: 0.5vw;
-  
+  font-size:31px;
 
 
 }
@@ -247,7 +251,18 @@ paragraph {
 
   }  
 
-
+paragraph {
+    font-family: Open Sans;
+  
+    background-color: rgba(31, 27, 27, 0.116);
+    background-size: cover;
+    color: var(--font-color);
+    padding: 0.5vw;
+    font-size:31px;
+  
+  
+}
+  
 
 
 
@@ -471,7 +486,11 @@ table {
 }
 
 
-
+.center{
+  margin-left: auto;
+  margin-right: auto;
+  padding:6px;
+}
 
 
 
@@ -485,7 +504,8 @@ table {
 #id_address{
     margin:auto;
     position:relative;
-    width:220px;
+    width:65vw;
+    max-width: 700px;
     font-size: 12px;
 
 }
@@ -561,3 +581,51 @@ h3 {
       display: inline-block;
       font-size: 21px;
   }
+
+
+.info{
+  font-family: Open Sans;
+  text-align: left;
+  
+  background-size: cover;
+  color: var(--font-color);
+  padding: 1px;
+  margin:auto;
+  font-size:31px;
+  display: inline-block;
+  width:65vw;
+  max-width: 700px;
+  text-indent: 0.5em;;
+}
+
+.info2{
+  font-family: Open Sans;
+  text-align: left;
+  
+  background-size: cover;
+  color: var(--font-color);
+  padding: 1px;
+  margin:auto;
+  font-size:31px;
+  display: inline-block;
+  width:99vw;
+  max-width: 900px;
+}
+
+
+
+
+
+.address{
+  font-family: Open Sans;
+
+  background-color: rgba(31, 27, 27, 0.021);
+  background-size: cover;
+  color: var(--font-color);
+  padding: 0.5vw;
+  font-size:28px;
+  display: inline-block;
+}
+.address:hover{
+  transform: scale(1.1) ;
+}

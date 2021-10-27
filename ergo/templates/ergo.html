@@ -24,22 +24,34 @@
         @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
         @import url('http://fonts.cdnfonts.com/css/milliard');
         .grid {
-            display: grid;
+            display: inline-grid;
             grid-template-columns: 1fr;
-            grid-template-rows: 1fr;
-            grid-template-areas:
-            "title device_theme"
-
-            "content content"
-            ". .";
+            grid-template-rows: auto auto auto auto;
             
-            grid-column: 1/-1;
-            width: 100vw;
-            padding: 1vw 1vw;
             
-  
+            
+            
+            width: 100%;
+            margin:auto;
+            overflow:hidden;
+            padding:3px;
         }
+        .device-theme{
+            grid-row:1;
+            grid-column: 4;
+        }
+        .title{
+            grid-row: 2;
+            grid-column:1/4;
+            text-align:center;
+            display: inline-grid;
+            
 
+
+  
+            
+        }
+        
 
 
         .table {
@@ -66,52 +78,54 @@
 
         }
         
-
+        .content{
+            grid-row:3;
+            grid-column:1/4;
+            float:middle;
+            text-align:center;
+        }
         
 
 
 
-
-        .transhist {
-            display: grid;
-            grid-template-columns: auto;
-            grid-template-rows: auto;
-            grid-template-areas:
-                '. title title .'
-                '. time value .';
-
-            grid-gap: 10px;
+        br{
+            display:block;
+            margin: 2px 0;
         }
+        
 
         .time {
-            grid-column: 1 /2;
-            grid-row: 2;
+            display:grid;
+            grid-column: 1;
+            width:50vw;
             font-size:14px;
             text-align: left;
-            border: 1px solid;
+            border-color:black;
             border-bottom: 1px solid #aaa;
+            padding: 2px;
             
         }
 
         .value_pos {
-            display: grid;
-            grid-column: 4;
-            grid-row: 2;
+            
             font-size:14px;
+            
             text-align: right;
-            border: 1px solid;
+            padding: 2px;
+            width:50vw;
+            
             border-color:black;
             color: green;
             border-bottom: 1px solid #aaa;
             
         }
         .value_neg {
-            display: grid;
-            grid-column: 4;
+            
             font-size:14px;
-            grid-row: 2;
+            padding: 2px;
+            width:50vw;
             text-align: right;
-            border: 1px solid;
+            left:4px;
             border-color: black;
             color: red;
             border-bottom: 1px solid #aaa;
@@ -120,15 +134,24 @@
         }
 
         .title_hist {
-            grid-row: 1;
-            grid-column: 1 /5;
+            grid-row:3;
+            grid-column: 1 /3;
             text-align: center;
             background-color: var(--bg-color);
             max-height: auto;
-            display: inline-block;
+            display: grid;
             
             color: var(--font-color)
 
+        }
+        .transhist{
+            grid-row: 4;
+            grid-column:1/4;
+            display: flex;
+            text-align: center;
+            width:100%;
+            white-space:nowrap;
+            justify-content:space-evenly;
         }
         .btn {
             background-color:rgba(46, 3, 75, 0.5);
@@ -147,12 +170,13 @@
         }
 
         .wrap {
-            max-width: 50vh;
-            
+            max-width: 75vw;
+            color:var(--bg-color);
             margin: 0 auto;
         }
         .card {
         display: flex;
+        background-color:var(--bg-color);
         flex-direction: column;
         border: solid 0.5rem rgba(204, 204, 204, 0.089);
         }
@@ -161,8 +185,25 @@
         }
 
         .card-content {
-        padding: 2rem;
+        padding:2px;
+        color: var(--font-color);
+        align-items: center;
+        text-align: center;
+        font-size: 21px;
         }
+
+        .card-content1 {
+        padding:2px;
+        color: var(--font-color);
+        align-items: center;
+        text-align: center;
+        font-size: 21px;
+        }
+
+
+
+
+
 
         img {
         
@@ -171,14 +212,9 @@
         }
 
         @media only screen and (min-width: 600px) {
-        .card {
-            flex-direction: row;
-        }
+        
 
-        .card-content {
-            display: flex;
-            align-items: center;
-        }
+        
 
         .card > * {
             flex-basis: 100%;
@@ -199,10 +235,44 @@
         text-decoration: none;
         
         }
-
+        .paragraph{
+            font-size: 21px;
+            }
         
 
+        @media only screen and (max-width: 600px){
+            .container{
+            font-size: 0.62em;
+            max-width:19vw;
+        }
+        .p{
+                font-size:0.91em;
+        }
+            paragraph{
+            font-size: 0.71em;
+            }
+        
+        .info{
+            font-size: 0.81em;
+        }
+        .info2{
+            font-size: 0.71em;
+        }
+        .address{
+            font-size:0.41em;
+        }
+        .card-content1 {
+            
+            
+            font-size: 0.411em;
+        }
 
+        .card-content {
+            
+            
+            font-size: 0.92em;
+        }
+    }
     </style>
 
 
@@ -211,34 +281,40 @@
 
     <div class="card">
     <div class="card-image">
-            <img src="{% static img %}" alt="erg" width="100" height="100" style="border:2px ridge black">
+            <img src="{% static img %}" alt="erg" width="device-width" initial-scale=0.1 height="device-width" style="padding:9px;">
     </div>
     <div class="card-content">
-        In the last 24hrs of  Ergo has had a high of {{daily_high}} CAD and a low of {{daily_low}} CAD  ( Updated : {{daily_open_time}} -- {{last_updated_at}})
+        In the last 24hrs of  Ergo has had a high of {{daily_high}} CAD and a low of {{daily_low}} CAD
     </div>
+        <div class='card-content1' >( Updated : {{daily_open_time}} -- {{last_updated_at}})</div>
+    
       
-    </div>
+
   
    
   
     
+        
   
-  </div>
+  
+    <div class='bottom' style="text-align: left;">
+        
+    <div class='info'>{{name}}</div><br>
 
-    <div class='bottom'>
-    <paragraph>{{name}}</paragraph>
-    <br>
-    <paragraph>Price (CAD): ${{price}}</paragraph>
-    <br>
+    <div class='info'>Price (CAD): ${{price}}</div><br>
+
     {% if dir == 'pos' %}
-        <paragraph>24h% change:  </paragraph>   <paragraph style='color:#3ddf1df3'>+{{prc_chg_24h}}%</h3> <br>
-        <paragraph>1h% change:</paragraph>  <paragraph style='color:#3ddf1df3'>{{price_change_percentage_1hr}}%</h3>
+        <div class='info'>24h% change:   <div class='info' style='color:#3ddf1df3'>+{{prc_chg_24h}}%</div> </div>  <br>
+        <div class='info'>1h% change: <div class='info' style='color:#3ddf1df3'>{{price_change_percentage_1hr}}%</div> </div> <br>
     {% else %}
-        <paragraph>24h% change: </paragraph>    <paragraph style='color:red'>{{prc_chg_24h}}%</h3> <br>
-        <paragraph>1h% change:</paragraph>  <paragraph style='color:red'>{{price_change_percentage_1hr}}%</h3>
+        <div class='info'>24h% change:    <div class='info' style='color:red'>{{prc_chg_24h}}%</div> </div> <br>
+        <div class='info'>1h% change: <div class='info' style='color:red'>{{price_change_percentage_1hr}}%</div> </div> <br>
     {% endif %}
-    <br>
-    <img src = "{% static fig1 %}" alt='comparison_btc_erg'  style='display:inline-block;width:30%;max-width:100vw;background: rgba(0, 0, 0, 0);'>
+</div>   
+    </div>
+</div>
+   
+    <img src = "{% static fig1 %}" class="center"  alt='comparison_btc_erg'  style='display:block;width:75vw;max-width:700px;background: rgba(0, 0, 0, 0);'>
     
 
 
@@ -292,29 +368,29 @@
     
     &nbsp; use a test address? &nbsp;
 </button>
+<br>
 
 
+<div class='bottom' style='text-align:left;width:95vw;max-width: 800px;'>
+        <div class='info2'>Info</div> <br>
+        
+        <div class='info2'> Address:    </div><br>
 
 
-<div class='paragraph'  text-align='center' >Info</div>
-<div class='paragraph'> Address:    </div>
+        <div class='address'>&nbsp {{address}}</div><br>
+        <div class='info2'>Token Balance: {{address_bal}} ERG</div><br>
+        <div class='info2'>Balance: ${{bal_cad}} CAD</div><br>
+        <div class='info2'>No. Trans: {{trans_amnt}}</div>
 
-
-<div class='paragraph' style='font-size:11px'>&nbsp {{address}}</div>
-<div class='paragraph'>Token Balance: {{address_bal}} ERG</div>
-<div class='paragraph'>Balance: ${{bal_cad}} CAD</div>
-<div class='paragraph'>No. Trans: {{trans_amnt}}</div>
-
-
-
-
+</div>
 
 
 
 
  
-    <div class='transhist'>
-        <div class='title_hist' >Transaction History</div>
+    <div class='title_hist' >Transaction History </div>
+    <div class='transhist'> 
+        
 
         <ul>
             
@@ -337,10 +413,10 @@
         <u1>
             {% for k in trans_val %}
             {% if k > 0 %} 
-            <div class='value_pos'>{{k}}&nbsp;ERG</div>
+            <div class='value_pos'>{{k}}&nbsp;ERG &nbsp; </div>
             
             {% elif k < 0 %}  
-            <div class='value_neg'>{{k}}&nbsp;ERG</div>
+            <div class='value_neg'>{{k}}&nbsp;ERG &nbsp; </div>
             
         {% endif %}
         {% endfor %}

@@ -47,16 +47,16 @@ for i in bitcoin_candle_31:
    # print(i[0])
     time_list.append(dt.fromtimestamp(i[0]/1000).astimezone(est))
 
-for i in bitcoin_candle_31:
-    open_val = i[1]
-    close_val = i[4]
-    avg_val =((open_val - close_val) / close_val ) *100# avg of open and close for inteval
-    print(open_val , close_val)
-    val_list_btc.append(avg_val)
+#for i in bitcoin_candle_31:
+#    open_val = i[1]
+ #   close_val = i[4]
+  #  avg_val =((open_val - close_val) / close_val ) *100# avg of open and close for inteval
+   # print(open_val , close_val)
+    #val_list_btc.append(avg_val)
 for i in ergo_candle_31:
    open_val = i[1]
    close_val = i[4]
-   avg_val =((open_val - close_val) / close_val) *100 # avg of open and close for inteval
+   avg_val =open_val  # avg of open and close for inteval
    val_list_erg.append(avg_val)
 
 
@@ -65,7 +65,7 @@ for i in ergo_candle_31:
 
 
 years = time_list
-
+print(years)
 fig = go.Figure(layout=layout)
 fig.add_trace(go.Line(x=years,
                 y=val_list_erg,
@@ -73,16 +73,17 @@ fig.add_trace(go.Line(x=years,
                 
                 marker_color="rgb(55, 233, 0)"
                 ))
-fig.add_trace(go.Line(x=years,
-                y=val_list_btc,
-                name='BTC',
-                marker_color='rgb(249, 27, 45)'
-                ))
+#fig.add_trace(go.Line(x=years,
+ #               y=val_list_btc,
+  #              name='BTC',
+   #             marker_color='rgb(249, 27, 45)'
+    #            ))
 
 fig.update_xaxes(showline=True, linewidth=2, linecolor='black')
 fig.update_layout(
     title='ERG relative BTC',
     xaxis_tickfont_size=14,
+    
     
     
     legend=dict(
