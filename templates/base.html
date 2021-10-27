@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-  <head>
+  <head style="background-color:var(--bg-img);">
     {% load static %}
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -18,7 +18,7 @@
 
 
 
-
+</head> 
 
     <!-- Custom JS-->
    
@@ -29,15 +29,15 @@
 
 
 
-
+<body>
 
     
 
     <script src={% static 'main.js' %} defer></script>
 
     <title>{% block head_title %}{% endblock %}</title>
-  </head>
-  <body>
+
+
 
 
 
@@ -81,11 +81,11 @@
         function switchTheme(e) {
             if (e.target.checked) {
                 document.documentElement.setAttribute('data-theme', 'dark');
-                localStorage.setItem('theme', 'dark'); //add this
+                localStorage.setItem('theme', 'dark'); 
             }
             else {
                 document.documentElement.setAttribute('data-theme', 'light');
-                localStorage.setItem('theme', 'light'); //add this
+                localStorage.setItem('theme', 'light'); 
             }    
         }
        
@@ -107,11 +107,11 @@
         
       </script>   
         
-      </div>  
+      
         
         
-        
-        
+      </div>
+      
         {% block device_theme %} {% endblock %}</div>
       <div class='title'>{% block page_title %}{% endblock %}</div>
       
@@ -136,6 +136,5 @@
     </div>   
     
 
-  </body>
+</body>
 </html>
-  

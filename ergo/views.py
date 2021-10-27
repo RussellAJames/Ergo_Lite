@@ -86,11 +86,11 @@ fig.update_layout(
     
     
     legend=dict(
-        x=0,
+        x=1,
         y=1.0,
-        bgcolor='rgba(0,0,0,0)',
+        bgcolor='rgba(0,0,0,.50)',
         font_color='grey',
-        bordercolor='rgb(0,0,0,0)',
+        bordercolor='rgb(0,0,0)',
         
     ),
     

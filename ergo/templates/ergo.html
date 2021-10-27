@@ -67,18 +67,7 @@
         }
         
 
-        .paragraph {
-            font-family: Open Sans;
-
-            background-color: rgba(31, 27, 27, 0.116);
-            background-size: cover;
-            color: var(--font-color);
-            padding: 0.5vw;
-            
-
-
-        }
-
+        
 
 
 
@@ -157,7 +146,45 @@
 
         }
 
+        .wrap {
+            max-width: 50vh;
+            
+            margin: 0 auto;
+        }
+        .card {
+        display: flex;
+        flex-direction: column;
+        border: solid 0.5rem rgba(204, 204, 204, 0.089);
+        }
+        .card + .card {
+        margin-top: 1rem;
+        }
 
+        .card-content {
+        padding: 2rem;
+        }
+
+        img {
+        
+        
+        height: auto;
+        }
+
+        @media only screen and (min-width: 600px) {
+        .card {
+            flex-direction: row;
+        }
+
+        .card-content {
+            display: flex;
+            align-items: center;
+        }
+
+        .card > * {
+            flex-basis: 100%;
+        }
+
+}
 
         btn:hover {
             background-color: #555555;
@@ -173,36 +200,45 @@
         
         }
 
-        h2 {
-        color: var(--font-color);
-        background-color: transparent;
-        display: inline-block;
-        font-size: 21px;
         
-        }
+
 
     </style>
-</head>
 
+
+</head>
+<div class="wrap">
+
+    <div class="card">
+    <div class="card-image">
+            <img src="{% static img %}" alt="erg" width="100" height="100" style="border:2px ridge black">
+    </div>
+    <div class="card-content">
+        In the last 24hrs of  Ergo has had a high of {{daily_high}} CAD and a low of {{daily_low}} CAD  ( Updated : {{daily_open_time}} -- {{last_updated_at}})
+    </div>
+      
+    </div>
+  
+   
+  
     
-    <img src="{% static img %}" alt="erg" width="125" height="125" style="border:2px ridge black">
-    <h2 style="float:'top';font-size:1em;"> In the last 24hrs of  Ergo has had a high of {{daily_high}} CAD and a low of {{daily_low}} CAD
-    <h2 style='font-size:0.75em'> ( Updated : {{daily_open_time}} -- {{last_updated_at}})</h2> </h2>
-    <br>
+  
+  </div>
+
     <div class='bottom'>
-    <h2>{{name}}</h2>
+    <paragraph>{{name}}</paragraph>
     <br>
-    <h2>Price (CAD): ${{price}}</h2>
+    <paragraph>Price (CAD): ${{price}}</paragraph>
     <br>
     {% if dir == 'pos' %}
-        <h2>24h% change:  </h2>   <h2 style='color:#3ddf1df3'>+{{prc_chg_24h}}%</h2> <br>
-        <h2>1h% change:</h2>  <h2 style='color:#3ddf1df3'>{{price_change_percentage_1hr}}%</h2>
+        <paragraph>24h% change:  </paragraph>   <paragraph style='color:#3ddf1df3'>+{{prc_chg_24h}}%</h3> <br>
+        <paragraph>1h% change:</paragraph>  <paragraph style='color:#3ddf1df3'>{{price_change_percentage_1hr}}%</h3>
     {% else %}
-        <h2>24h% change: </h2>    <h2 style='color:red'>{{prc_chg_24h}}%</h2> <br>
-        <h2>1h% change:</h2>  <h2 style='color:red'>{{price_change_percentage_1hr}}%</h2>
+        <paragraph>24h% change: </paragraph>    <paragraph style='color:red'>{{prc_chg_24h}}%</h3> <br>
+        <paragraph>1h% change:</paragraph>  <paragraph style='color:red'>{{price_change_percentage_1hr}}%</h3>
     {% endif %}
     <br>
-    <img src = "{% static fig1 %}" alt='comparison_btc_erg'  style='width:25%;max-width:50vw;background: rgba(0, 0, 0, 0);'>
+    <img src = "{% static fig1 %}" alt='comparison_btc_erg'  style='display:inline-block;width:30%;max-width:100vw;background: rgba(0, 0, 0, 0);'>
     
 
 
