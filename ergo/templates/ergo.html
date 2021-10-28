@@ -5,7 +5,8 @@
 
 {% block page_title %} 
 <h1 class='contact'> Ergo Address Lookup</h1>
-
+<div class="stars"></div>
+<div class="twinkling"></div> 
 {% endblock %} 
 
 
@@ -23,6 +24,16 @@
     <style>
         @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
         @import url('http://fonts.cdnfonts.com/css/milliard');
+        *{
+           z-index:1;
+       }
+       
+       nav{
+           width:110%;
+            z-index: 2;
+            position: relative;
+            overflow-x:visible;
+        }
         .grid {
             display: inline-grid;
             grid-template-columns: 1fr;
@@ -36,9 +47,11 @@
             overflow:hidden;
             padding:3px;
         }
-        .device-theme{
+        .device_theme{
+            
+            z-index: 2;
             grid-row:1;
-            grid-column: 4;
+            grid-column: 3;
         }
         .title{
             grid-row: 2;
@@ -70,7 +83,7 @@
         .bottom {
             font-family: Open Sans;
             font-size: 28px;
-            
+            background-color:var(--container-bcolor);
             background-size: cover;
             
             display:inline;
@@ -95,11 +108,10 @@
         
 
         .time {
-            display:grid;
-            grid-column: 1;
-            width:50vw;
+            
+            overflow:hidden;
             font-size:14px;
-            text-align: left;
+            white-space:nowrap;
             border-color:black;
             border-bottom: 1px solid #aaa;
             padding: 2px;
@@ -109,10 +121,10 @@
         .value_pos {
             
             font-size:14px;
+            white-space:nowrap;
             
-            text-align: right;
             padding: 2px;
-            width:50vw;
+            
             
             border-color:black;
             color: green;
@@ -123,9 +135,9 @@
             
             font-size:14px;
             padding: 2px;
-            width:50vw;
-            text-align: right;
-            left:4px;
+            white-space:nowrap;
+            
+            
             border-color: black;
             color: red;
             border-bottom: 1px solid #aaa;
@@ -140,7 +152,7 @@
             background-color: var(--bg-color);
             max-height: auto;
             display: grid;
-            
+            width:100%;
             color: var(--font-color)
 
         }
@@ -154,7 +166,7 @@
             justify-content:space-evenly;
         }
         .btn {
-            background-color:rgba(46, 3, 75, 0.5);
+            background-color:var(--bg-color);
             
             border: none;
             color:var(--font-color);
@@ -169,37 +181,8 @@
 
         }
 
-        .wrap {
-            max-width: 75vw;
-            color:var(--bg-color);
-            margin: 0 auto;
-        }
-        .card {
-        display: flex;
-        background-color:var(--bg-color);
-        flex-direction: column;
-        border: solid 0.5rem rgba(204, 204, 204, 0.089);
-        }
-        .card + .card {
-        margin-top: 1rem;
-        }
-
-        .card-content {
-        padding:2px;
-        color: var(--font-color);
-        align-items: center;
-        text-align: center;
-        font-size: 21px;
-        }
-
-        .card-content1 {
-        padding:2px;
-        color: var(--font-color);
-        align-items: center;
-        text-align: center;
-        font-size: 21px;
-        }
-
+        
+        
 
 
 
@@ -207,7 +190,9 @@
 
         img {
         
-        
+        width:50vw;
+        max-width: 250px;
+
         height: auto;
         }
 
@@ -253,10 +238,13 @@
             }
         
         .info{
-            font-size: 0.81em;
+            font-size: 0.71em;
         }
         .info2{
             font-size: 0.71em;
+        }
+        .info_prc_chg{
+            font-size:0.71em
         }
         .address{
             font-size:0.41em;
@@ -281,7 +269,7 @@
 
     <div class="card">
     <div class="card-image">
-            <img src="{% static img %}" alt="erg" width="device-width" initial-scale=0.1 height="device-width" style="padding:9px;">
+            <img src="{% static img %}" alt="erg" style="padding:9px;">
     </div>
     <div class="card-content">
         In the last 24hrs of  Ergo has had a high of {{daily_high}} CAD and a low of {{daily_low}} CAD
@@ -293,24 +281,30 @@
   
    
   
-    
+    <br>
         
   
   
     <div class='bottom' style="text-align: left;">
         
-    <div class='info'>{{name}}</div><br>
+        <div class='info'>{{name}}</div>
 
-    <div class='info'>Price (CAD): ${{price}}</div><br>
+            <div class='info'>Price (CAD): ${{price}}</div>
 
-    {% if dir == 'pos' %}
-        <div class='info'>24h% change:   <div class='info' style='color:#3ddf1df3'>+{{prc_chg_24h}}%</div> </div>  <br>
-        <div class='info'>1h% change: <div class='info' style='color:#3ddf1df3'>{{price_change_percentage_1hr}}%</div> </div> <br>
-    {% else %}
-        <div class='info'>24h% change:    <div class='info' style='color:red'>{{prc_chg_24h}}%</div> </div> <br>
-        <div class='info'>1h% change: <div class='info' style='color:red'>{{price_change_percentage_1hr}}%</div> </div> <br>
-    {% endif %}
-</div>   
+            {% if dir == 'pos' %}
+                <div class='info_prc_chg'>24h% change:</div>
+                    
+                <div class='info_prc_chg' style='color:#3ddf1df3'>{{prc_chg_24h}}% &nbsp;</div> 
+                <br>
+                  
+                <div class='info_prc_chg' >1h% change:</div> 
+                <div class='info_prc_chg' style='color:#3ddf1df3'>{{price_change_percentage_1hr}}%  &nbsp;</div>
+            {% else %}
+                <div class='info'>24h% change:<div class='info_prc_chg' style='color:red'>{{prc_chg_24h}}%</div> </div> <br>
+
+                <div class='info'>1h% change: <div class='info_prc_chg' style='color:red'>{{price_change_percentage_1hr}}%</div> </div> <br>
+            {% endif %}
+        </div>   
     </div>
 </div>
    
@@ -369,66 +363,88 @@
     &nbsp; use a test address? &nbsp;
 </button>
 <br>
+<br>
+
+<div class='wrap' style='color:none;' >
+    <div class='card' style='border-radius: 25px;background-color: none;border:none;' >
+        <div class='bottom' style='text-align:left;min-width:354px ;'>
+                <div class='info2'>Info</div> <br>
+                
+                <div class='info2'> Address:    </div><br>
 
 
-<div class='bottom' style='text-align:left;width:95vw;max-width: 800px;'>
-        <div class='info2'>Info</div> <br>
-        
-        <div class='info2'> Address:    </div><br>
+                <div class='address'>&nbsp {{address}}</div><br>
+                <div class='info2'>Token Balance: {{address_bal}} ERG</div><br>
+                <div class='info2'>Balance: ${{bal_cad}} CAD</div><br>
+                <div class='info2'>No. Trans: {{trans_amnt}}</div>
 
-
-        <div class='address'>&nbsp {{address}}</div><br>
-        <div class='info2'>Token Balance: {{address_bal}} ERG</div><br>
-        <div class='info2'>Balance: ${{bal_cad}} CAD</div><br>
-        <div class='info2'>No. Trans: {{trans_amnt}}</div>
-
+        </div>
+    </div>
 </div>
 
-
-
+<br>
 
  
-    <div class='title_hist' >Transaction History </div>
-    <div class='transhist'> 
+<div class='transaction-wrap'>
+    <div class='card' style='max-width: 900px;'>
         
+            <div class='title_hist' >Transaction History </div>
 
-        <ul>
-            
-               
+        <table style='margin:0px;width:100%;'>
+        
+                    <tr> 
+                        <td style="width: 50%;display: inline;">
+                            <u1 style='position: relative;'>
+                            
+                               
+                                
 
-            
-            {% for i in trans_time %}
+                            
+                                {% for i in trans_time %}
+                                
+
+
+                                    <div class='time'>{{i}}&nbsp;EST </div>
+                                
+                                {% endfor %}
+                            
+                            
+                        
+                               
+                    
+                            </ul>        
+                    
+                        </td>
+                        <td style="width: 50%;">
+                            <u1 style='position: relative;width:45vw;'>
+                                {% for k in trans_val %}
+                                {% if k > 0 %} 
+
+                                
+                                    <div class='value_pos'>{{k}}&nbsp;ERG &nbsp;  </div>
+                               
+                                {% elif k < 0 %}  
+                                
+                                <div class='value_neg'>{{k}}&nbsp;ERG &nbsp;  </div>
+                                
+                                {% endif %}
+                                {% endfor %}
+
+
+
+
+
                 
-
-
-                <div class='time'>&nbsp;{{i}}&nbsp;EST </div>
+                            </u1>
+                        </td>        
+                    </tr>    
+                
+                
             
-            {% endfor %}
-            
-            
-        
+                  
 
-      
-        </ul>        
-        <u1>
-            {% for k in trans_val %}
-            {% if k > 0 %} 
-            <div class='value_pos'>{{k}}&nbsp;ERG &nbsp; </div>
-            
-            {% elif k < 0 %}  
-            <div class='value_neg'>{{k}}&nbsp;ERG &nbsp; </div>
-            
-        {% endif %}
-        {% endfor %}
-
-
-
-
-
-    
-        </u1>
+        </table>   
     </div>
-
-
+</div>
 
 {% endblock %}
