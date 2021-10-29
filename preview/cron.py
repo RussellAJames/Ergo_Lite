@@ -14,7 +14,7 @@ def my_cron_job(t):
     parameters = {
         'start':'1',
         'limit':'10',
-        'convert':'USD'
+        'convert':'CAD'
     }
     headers = {
         'Accepts': 'application/json',
@@ -36,9 +36,11 @@ def my_cron_job(t):
 
         dict['name'] = x['name']
         dict['sym'] = x['symbol']
-        dict['price'] = str("%.2f" % x['quote']['USD']['price'])
-        dict['change_1'] = str("%.2f" % x['quote']['USD']['percent_change_1h'])
-        dict['change_24'] = str("%.2f" % x['quote']['USD']['percent_change_24h'])
+        dict['price'] = str("%.2f" % x['quote']['CAD']['price'])
+        dict['price2']= x['quote']['CAD']['price']
+        dict['change_1'] = str("%.2f" % x['quote']['CAD']['percent_change_1h'])
+        dict['change_24'] = str("%.2f" % x['quote']['CAD']['percent_change_24h'])
+        dict['date_added'] = x['date_added']
         t.append(dict)
         dict ={}
 

@@ -66,32 +66,37 @@ for i in ergo_candle_31:
 
 years = time_list
 print(years)
-fig = go.Figure(layout=layout)
-fig.add_trace(go.Line(x=years,
+
+fig = px.line(x=years,
                 y=val_list_erg,
-                name='ERG',
                 
-                marker_color="rgb(55, 233, 0)"
-                ))
+                
+                title='test',
+                
+                )
 #fig.add_trace(go.Line(x=years,
  #               y=val_list_btc,
   #              name='BTC',
    #             marker_color='rgb(249, 27, 45)'
     #            ))
 
-fig.update_xaxes(showline=True, linewidth=2, linecolor='black')
+
 fig.update_layout(
-    title='ERG relative BTC',
-    xaxis_tickfont_size=14,
+    title='ERG',
+    xaxis_tickfont_size=20,
     
+    xaxis_range=[0,30],
+    plot_bgcolor='rgba(170, 170, 170, 0)',
+    paper_bgcolor='rgba(170, 170, 170, 0)',
     
     
     legend=dict(
         x=1,
         y=1.0,
-        bgcolor='rgba(0,0,0,.50)',
+        
+        bgcolor='rgba(170, 170, 170, 0)',
         font_color='grey',
-        bordercolor='rgb(0,0,0)',
+        bordercolor='rgba(170, 170, 170, 0)',
         
     ),
     
